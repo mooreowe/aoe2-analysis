@@ -49,8 +49,6 @@ The following bar chart shows the distribution of civilization picks across all 
 
 <iframe
 src="assets/civ_picks.html"
-width="400"
-height="600"
 frameborder="0"
 ></iframe>
 
@@ -58,22 +56,16 @@ The following heatmaps plot civilization combos to winrates. The first graph sho
 
 <iframe
 src="assets/civ_combo_winrates.html"
-width="400"
-height="600"
 frameborder="0"
 ></iframe>
 
 <iframe
 src="assets/arabia_civ_winrates.html"
-width="400"
-height="600"
 frameborder="0"
 ></iframe>
 
 <iframe
 src="assets/arena_civ_winrates.html"
-width="400"
-height="600"
 frameborder="0"
 ></iframe>
 
