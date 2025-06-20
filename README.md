@@ -43,21 +43,11 @@ Then, I created three new columns. Two of them contained the civilization pairs 
 
 <br> <br>
 
-| semester    | Count |
-|-------------|-------|
-| Fall 2020   | 3     |
-| Winter 2021 | 2     |
-| Spring 2021 | 6     |
-| Summer 2021 | 4     |
-| Fall 2021   | 55    |
-
-<br>
-
 The following bar chart shows the distribution of civilization picks across all 2v2 games in the dataset. Some civilizations have much lower pickrates than others, and a few stand out as very popular. <br>
 
 <iframe
 src="assets/civ_picks.html"
-width="800"
+width="400"
 height="600"
 frameborder="0"
 ></iframe>
