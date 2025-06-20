@@ -42,3 +42,12 @@ Then, I created three new columns. Two of them contained the civilization pairs 
 | arabia | 398268971 |   1055.5  |       1021.5 |       1089.5 |                7 | 0 days 00:31:59.300000 | ethiopians teutons | italians lithuanians |              0 |
 
 <br> <br>
+
+
+
+<iframe
+src="assets/civ_picks.html"
+width="800"
+height="600"
+frameborder="0"
+></iframe>
