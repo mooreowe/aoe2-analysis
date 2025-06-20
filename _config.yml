@@ -1,5 +1,5 @@
 title: Civ Wins
-subtitle: Is the winner of an Age of Empires II game determined from the start?
+description: Is the winner of an Age of Empires II game determined from the start?
 remote_theme: pages-themes/midnight@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one

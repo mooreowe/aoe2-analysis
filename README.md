@@ -27,4 +27,7 @@ All columns of the dataframes and more information can be found [here](https://a
 
 ### Cleaning
 
-This data was actually fairly clean. To start, I filtered to only contain 2v2 games, since that's the question I'm trying to answer. Then I filtered out any games that lasted less than 2 minutes, since occasionally the servers or someones internet crash at the very beginning of the game, in which case the data is meaningless because the winner is random.
+This data was actually fairly clean. To start, I filtered to only contain 2v2 games, since that's the question I'm trying to answer. <br> 
+Then, I filtered out any games that lasted less than 2 minutes, since occasionally the servers or someones internet crash at the very beginning of the game, in which case the data is meaningless because the winner is random. <br>
+Finally, there were a few games that were marked as 2v2 games but had 3 players, which there is no gamemode with that amount. So, I filtered those out. <br>
+All told, this filtering reduced the number of 2v2 games from 169028 to 160234. All but 3 of those filtered out games were less than 2 minutes long likely due to disconnect. <br>
