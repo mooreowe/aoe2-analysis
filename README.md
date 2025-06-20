@@ -32,6 +32,7 @@ Then, I filtered out any games that lasted less than 2 minutes, since occasional
 Finally, there were a few games that were marked as 2v2 games but had 3 players, which there is no gamemode with that amount. So, I filtered those out. <br>
 All told, this filtering reduced the number of 2v2 games from 169028 to 160234. All but 3 of those filtered out games were less than 2 minutes long likely due to disconnect. <br>
 Then, I created three new columns. Two of them contained the civilization pairs for either team, sorted alphabetically. The other column was just a true/false for which team won the game. So, the final cleaned data looked like this: <br> <br>
+
 | map    |   game_id |   avg_elo |   team_0_elo |   team_1_elo |   raw_match_type | duration               | team0_civs         | team1_civs           |   winning_team |
 |:-------|----------:|----------:|-------------:|-------------:|-----------------:|:-----------------------|:-------------------|:---------------------|---------------:|
 | arabia | 398269888 |   1102.75 |       1084.5 |       1121   |                7 | 0 days 00:21:08.200000 | celts cumans       | armenians mongols    |              1 |
@@ -39,4 +40,5 @@ Then, I created three new columns. Two of them contained the civilization pairs 
 | arabia | 398269639 |   1199    |       1189.5 |       1208.5 |                7 | 0 days 00:40:51.400000 | ethiopians wei     | magyars mongols      |              0 |
 | arena  | 398269620 |   1051.5  |       1044.5 |       1058.5 |                7 | 0 days 00:47:25.800000 | franks khitans     | bohemians jurchens   |              1 |
 | arabia | 398268971 |   1055.5  |       1021.5 |       1089.5 |                7 | 0 days 00:31:59.300000 | ethiopians teutons | italians lithuanians |              0 |
+
 <br> <br>
