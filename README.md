@@ -49,8 +49,8 @@ The following bar chart shows the distribution of civilization picks across all 
 
 <iframe
 src="assets/civ_picks.html"
-width="1000"
-height="500"
+width="1100"
+height="600"
 frameborder="0"
 ></iframe>
 
@@ -137,3 +137,15 @@ Another interesting statistic is which civilizations are most commonly played at
 <br>
 
 # The Problem
+
+This project aims to predict the winner of a 2v2 Age of Empires II game. In terms of the data, I aim to predict the `winning_team` column using information available at the start of the match to see whether or not we can accurately predict the winner based off of only civilization, map, and elo data. Specifically, I will use the civilizations both teams are playing, the map they played on, the average elo of the whole match, and the average elo of each team. Since this is a prediction problem, I won't use any data from after the match is over (such as match duration) - although that would be interesting analysis!<br>
+This is a **binary classification** problem, since we are predicting either 0 (team 1 lost) or 1 (team 1 won). I'll be analyzing the model's effectiveness using accuracy, since for this problem we aren't too concerned with whether our mistakes were false negatives or false positives, just if the model correctly predicted. <br>
+
+# First/Baseline Model
+
+My initial model just took in the civilizations of each team and the average elo of each team, and used logistic regression to predict the winner. For the civilizations, I one-hot encoded each combination, and grouped all infrequent occurences (arbitrarily chose 5 as the minimum frequency). For the average elos of each team, I created a polynomial of degree 1 - again arbitrarily chosen degree. So, this model took in four total columns from the dataframe, two corresponding to elo and two to civilizations. <br>
+The testing accuracy of this initial model was 56.97%. For not knowing anything other than the civilizations and elo (it should be noted the average elo difference between teams in the dataset was ~30 points on a scale ranging from 0 to 2000+), this model is a good starting point. <br>
+The model used the default regularization built into the logistic regression model from sklearn. Additionally, the model's training accuracy was 59.61%, which is not too different from the testing accuracy, so the model is not too overfit to the data, likely thanks to regularization. <br>
+Overall, this is a fairly good starting model, but can definitely be improved upon.
+
+# Final Model
