@@ -43,6 +43,8 @@ Then, I created three new columns. Two of them contained the civilization pairs 
 
 <br> <br>
 
+### Exploratory Analysis - Interesting Distributions and Statistics
+
 The following bar chart shows the distribution of civilization picks across all 2v2 games in the dataset. Some civilizations have much lower pickrates than others, and a few stand out as very popular. <br>
 
 <iframe
@@ -51,3 +53,87 @@ width="400"
 height="600"
 frameborder="0"
 ></iframe>
+
+The following heatmaps plot civilization combos to winrates. The first graph shows the winrates across all maps of civ combos, while the latter two are separated by map to show arabia and arena, respectively. For the map-specific heatmaps, I've filtered to only show civ combos with more than 30 occurences, since low sample size can skew winrates. So, any combo with winrate 0 is just very uncommon.
+
+<iframe
+src="assets/civ_combo_winrates.html"
+width="400"
+height="600"
+frameborder="0"
+></iframe>
+
+<iframe
+src="assets/arabia_civ_winrates.html"
+width="400"
+height="600"
+frameborder="0"
+></iframe>
+
+<iframe
+src="assets/arena_civ_winrates.html"
+width="400"
+height="600"
+frameborder="0"
+></iframe>
+
+<br>
+Another interesting statistic is which civilizations are most commonly played at which skill levels. The following (very long!) table shows the average rating of each civilization in our dataset of 2v2 games. You can see how some civilizations are more beginner-friendly/popular such as Teutons, which is typically viewed as a beginner civ, although there are a few surprises such as Romans being popular among beginners even though they aren't typically viewed as such.
+<br>
+
+| civ         |   old_rating |
+|:------------|-------------:|
+| armenians   |     1087.16  |
+| aztecs      |     1032.4   |
+| bengalis    |     1108.03  |
+| berbers     |     1122.97  |
+| bohemians   |     1009.61  |
+| britons     |      990.996 |
+| bulgarians  |     1029.07  |
+| burgundians |     1002.23  |
+| burmese     |     1107.56  |
+| byzantines  |     1000.5   |
+| celts       |     1004.18  |
+| chinese     |      975.042 |
+| cumans      |     1051.63  |
+| dravidians  |     1127.34  |
+| ethiopians  |     1097.5   |
+| franks      |      983.58  |
+| georgians   |     1093.91  |
+| goths       |      983.313 |
+| gurjaras    |     1068.26  |
+| hindustanis |     1063.95  |
+| huns        |     1013.33  |
+| incas       |     1036.26  |
+| italians    |     1088.59  |
+| japanese    |     1038.26  |
+| jurchens    |     1071.59  |
+| khitans     |     1118.15  |
+| khmer       |      977.947 |
+| koreans     |     1090.71  |
+| lithuanians |     1053.94  |
+| magyars     |     1084.57  |
+| malay       |     1082.16  |
+| malians     |     1108.66  |
+| mayans      |     1083.59  |
+| mongols     |     1078.69  |
+| persians    |     1037.56  |
+| poles       |     1042.86  |
+| portuguese  |     1001.95  |
+| romans      |      984.262 |
+| saracens    |     1111.37  |
+| shu         |     1104.86  |
+| sicilians   |     1005.5   |
+| slavs       |     1028.87  |
+| spanish     |     1055.25  |
+| tatars      |     1065.39  |
+| teutons     |      977.374 |
+| turks       |      994.167 |
+| vietnamese  |     1041.94  |
+| vikings     |     1036.67  |
+| wei         |     1072.68  |
+| wu          |     1124.78  |
+
+<br>
+
+#
