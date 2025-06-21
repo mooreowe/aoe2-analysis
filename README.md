@@ -144,7 +144,7 @@ This is a **binary classification** problem, since we are predicting either 0 (t
 # First/Baseline Model
 
 My initial model just took in the civilizations of each team and the average elo of each team, and used logistic regression to predict the winner. For the civilizations, I one-hot encoded each combination, and grouped all infrequent occurences (arbitrarily chose 5 as the minimum frequency). For the average elos of each team, I created a polynomial of degree 1 - again arbitrarily chosen degree. So, this model took in four total columns from the dataframe, two corresponding to elo and two to civilizations. <br>
-The testing accuracy of this initial model was 56.97%. For not knowing anything other than the civilizations and elo (it should be noted the average elo difference between teams in the dataset was ~30 points on a scale ranging from 0 to 2000+), this model is a good starting point. <br>
+The testing accuracy of this initial model was 56.45%. For not knowing anything other than the civilizations and elo (it should be noted the average elo difference between teams in the dataset was ~30 points on a scale ranging from 0 to 2000+), this model is a good starting point. <br>
 The model used the default regularization built into the logistic regression model from sklearn. Additionally, the model's training accuracy was 59.61%, which is not too different from the testing accuracy, so the model is not too overfit to the data, likely thanks to regularization. <br>
 Overall, this is a fairly good starting model, but can definitely be improved upon.
 
@@ -161,5 +161,18 @@ I used `GridSearchCV` to find ideal model parameters. It chose the following: <b
 - `min_frequency = 3`: So for a civ combo to be considered frequent, it only needed 3 games.
 - `degree = 1`, for both polynomials (average elo and elo difference). `GridSearchCV` chose degree 1. Unfortunately I couldn't tune the interaction term parameter, again due to hardware limitations, so I set that degree to 1 as well.
 - `C = 0.01`: C is the inverse regularization parameter for `LogisticRegression`. In other words, a moderate penalty was chosen. <br>
-All that aside, how did the model improve? The final models confusion matrix was: <br>
+All that aside, how did the model improve? The final models confusion matrix was: <br> <br>
+
 <img src="assets/final_confusion_matrix.png" alt="No confusion for you!">
+<br> <br>
+
+It's interesting that the distribution of false positives and false negatives isn't equal, since you'd expect that they'd be roughly equal, since the model is just predicting whether or not team 1 will win. This is likely due to either the model being slightly overfit to the training data, so on the test data it's predicting too many positives, or it could be due to the model being generally skewed towards predicting factors so it's more likely in general to predict positive. <br>
+The final model's testing accuracy was **56.97%**, and its training accuracy was 57.66%. The testing accuracy increasing by a little bit, but not by too much. This implies that `map` and the engineered elo features weren't too helpful in predicting the winner. However, the training accuracy is much closer to the testing accuracy, so this shows that the final model is likely to generalize much better to unknown future data than the past model, which is good! <br>
+A potential reason that `map` didn't improve the accuracy by too much is likely because people tend to play mostly civ combos that are already good on the maps they play on. So, adding the feature helped our model be more generalizable but didn't necessarily improve the raw ability by that much since these civ combos were already viewed as good by the model, and likely only occurred on the maps they were played. <br>
+To summarize, the final model mostly improved upon the base models generalizability and became slightly more accurate. <br>
+
+# Conclusion
+
+Overall, to answer the question this project is all about: Are Age of Empires II games essentially determined from the start? <br>
+**No!** From the analysis and predictive model, it seems that it is very difficult to predict the winner of the game accurately. From a game design perspective, this is good since most of what seems to lead to a win must happen within the game. <br>
+Thanks for reading this far down! I hope you enjoyed the report!
