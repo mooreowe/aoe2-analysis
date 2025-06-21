@@ -1,13 +1,13 @@
 # Introduction
 
-Age of Empires II is a popular RTS (real-time strategy) game, currently developed by Microsoft under World's Edge studios and the Forgotten Empires team. The ranked mode of the game pits you (and optionally your team) against another team, based on elo. Everyone picks a civilization before the match begins, which has unique bonuses and access to different units, with the goal of building an empire to defeat your opponent. <br>
+Age of Empires II is a popular RTS (real-time strategy) game, currently developed by Microsoft under World's Edge studios and the Forgotten Empires team. The ranked mode of the game pits you (and optionally your team) against another team, based on elo. Everyone picks a civilization before the match begins, which has unique bonuses and access to different units, with the goal of building an empire to defeat your opponent. <br> <br>
 In 2v2 games, players pick civilizations according to the map and in order to cover each others' weaknesses. This project aims to answer this question: **Is the winner of a 2v2 game already decided by just the civilizations, map, and elo of the players?** In other words, are matches usually "civ wins" where one team has the clear advantage, and are elo disparities strong enough to sway the game before any play has begun? <br>
 
 ### Data
 First, a big thank you to jerbot from [aoestats.io](https://aoestats.io/) for creating a community API endpoint for access to the data. This analysis is only possible because of this! <br>
 <br>
 The initial dataset has data from the last 5 weeks of games, from 5/11/25 to 6/14/25. In total, there were _ games, with a total of _ player instances. The data is separated into one dataframe of information on games, and one with information on specific players. <br>
-The dataset has many columns (you can read a full description [here](https://aoestats.io/)). From the match dataframe, I will use the following columns: <br>
+The dataset has many columns (you can read a full description [here](https://aoestats.io/)). From the match dataframe, I will use the following columns: <br> <br>
 - `map` - string: contains the map the game was played on.
 - `game_id` - string: internal id of the game - used to merge with the player dataframe.
 - `avg_elo` - float: average elo of players in the match.
@@ -138,13 +138,13 @@ Another interesting statistic is which civilizations are most commonly played at
 
 # The Problem
 
-This project aims to predict the winner of a 2v2 Age of Empires II game. In terms of the data, I aim to predict the `winning_team` column using information available at the start of the match to see whether or not we can accurately predict the winner based off of only civilization, map, and elo data. Specifically, I will use the civilizations both teams are playing, the map they played on, the average elo of the whole match, and the average elo of each team. Since this is a prediction problem, I won't use any data from after the match is over (such as match duration) - although that would be interesting analysis!<br>
+This project aims to predict the winner of a 2v2 Age of Empires II game. In terms of the data, I aim to predict the `winning_team` column using information available at the start of the match to see whether or not we can accurately predict the winner based off of only civilization, map, and elo data. Specifically, I will use the civilizations both teams are playing, the map they played on, the average elo of the whole match, and the average elo of each team. Since this is a prediction problem, I won't use any data from after the match is over (such as match duration) - although that would be interesting analysis!<br> <br>
 This is a **binary classification** problem, since we are predicting either 0 (team 1 lost) or 1 (team 1 won). I'll be analyzing the model's effectiveness using accuracy, since for this problem we aren't too concerned with whether our mistakes were false negatives or false positives, just if the model correctly predicted. <br>
 
 # First/Baseline Model
 
-My initial model just took in the civilizations of each team and the average elo of each team, and used logistic regression to predict the winner. For the civilizations, I one-hot encoded each combination, and grouped all infrequent occurences (arbitrarily chose 5 as the minimum frequency). For the average elos of each team, I created a polynomial of degree 1 - again arbitrarily chosen degree. So, this model took in four total columns from the dataframe, two corresponding to elo and two to civilizations. <br>
-The testing accuracy of this initial model was 56.45%. For not knowing anything other than the civilizations and elo (it should be noted the average elo difference between teams in the dataset was ~30 points on a scale ranging from 0 to 2000+), this model is a good starting point. <br>
+My initial model just took in the civilizations of each team and the average elo of each team, and used logistic regression to predict the winner. For the civilizations, I one-hot encoded each combination, and grouped all infrequent occurences (arbitrarily chose 5 as the minimum frequency). For the average elos of each team, I created a polynomial of degree 1 - again arbitrarily chosen degree. So, this model took in four total columns from the dataframe, two corresponding to elo and two to civilizations. <br> <br>
+The testing accuracy of this initial model was 56.45%. For not knowing anything other than the civilizations and elo (it should be noted the average elo difference between teams in the dataset was ~30 points on a scale ranging from 0 to 2000+), this model is a good starting point. <br> <br>
 The model used the default regularization built into the logistic regression model from sklearn. Additionally, the model's training accuracy was 59.61%, which is not too different from the testing accuracy, so the model is not too overfit to the data, likely thanks to regularization. <br>
 Overall, this is a fairly good starting model, but can definitely be improved upon.
 
@@ -166,9 +166,9 @@ All that aside, how did the model improve? The final models confusion matrix was
 <img src="assets/final_confusion_matrix.png" alt="No confusion for you!">
 <br> <br>
 
-It's interesting that the distribution of false positives and false negatives isn't equal, since you'd expect that they'd be roughly equal, since the model is just predicting whether or not team 1 will win. This is likely due to either the model being slightly overfit to the training data, so on the test data it's predicting too many positives, or it could be due to the model being generally skewed towards predicting factors so it's more likely in general to predict positive. <br>
-The final model's testing accuracy was **56.97%**, and its training accuracy was 57.66%. The testing accuracy increasing by a little bit, but not by too much. This implies that `map` and the engineered elo features weren't too helpful in predicting the winner. However, the training accuracy is much closer to the testing accuracy, so this shows that the final model is likely to generalize much better to unknown future data than the past model, which is good! <br>
-A potential reason that `map` didn't improve the accuracy by too much is likely because people tend to play mostly civ combos that are already good on the maps they play on. So, adding the feature helped our model be more generalizable but didn't necessarily improve the raw ability by that much since these civ combos were already viewed as good by the model, and likely only occurred on the maps they were played. <br>
+It's interesting that the distribution of false positives and false negatives isn't equal, since you'd expect that they'd be roughly equal, since the model is just predicting whether or not team 1 will win. This is likely due to either the model being slightly overfit to the training data, so on the test data it's predicting too many positives, or it could be due to the model being generally skewed towards predicting factors so it's more likely in general to predict positive. <br> <br>
+The final model's testing accuracy was **56.97%**, and its training accuracy was 57.66%. The testing accuracy increasing by a little bit, but not by too much. This implies that `map` and the engineered elo features weren't too helpful in predicting the winner. However, the training accuracy is much closer to the testing accuracy, so this shows that the final model is likely to generalize much better to unknown future data than the past model, which is good! <br> <br>
+A potential reason that `map` didn't improve the accuracy by too much is likely because people tend to play mostly civ combos that are already good on the maps they play on. So, adding the feature helped our model be more generalizable but didn't necessarily improve the raw ability by that much since these civ combos were already viewed as good by the model, and likely only occurred on the maps they were played. <br> <br>
 To summarize, the final model mostly improved upon the base models generalizability and became slightly more accurate. <br>
 
 # Conclusion
