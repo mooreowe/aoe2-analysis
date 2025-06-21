@@ -149,3 +149,17 @@ The model used the default regularization built into the logistic regression mod
 Overall, this is a fairly good starting model, but can definitely be improved upon.
 
 # Final Model
+
+For the final model, I added the following features: <br>
+- `map`: Added one-hot encoded map data - should help with accuracy since knowing which map the game is on should favor some civ combos over others.
+- `avg_elo`: Added the average elo of the game. This should help since certain civilizations are much better than others when in the hands of better players, and much worse in the hands of worse players. <br>
+And, I engineered the following features: <br>
+- `elo_diff`: Difference between the elos of the two teams. This should mostly help with edge cases where matchmaking put one team that was much better vs one that was much worse, and should help in general.
+- Interaction terms: Polynomial interaction term that models interaction between existing variables. More on this later. <br>
+I chose to keep using `LogisticRegression`, although I experimented with `RandomForestClassifier` and `XGBClassifier`. I didn't use the latter due to hardware limitations, and the prior since it's accuracy was either worse or equivalent. <br>
+I used `GridSearchCV` to find ideal model parameters. It chose the following: <br>
+- `min_frequency = 3`: So for a civ combo to be considered frequent, it only needed 3 games.
+- `degree = 1`, for both polynomials (average elo and elo difference). `GridSearchCV` chose degree 1. Unfortunately I couldn't tune the interaction term parameter, again due to hardware limitations, so I set that degree to 1 as well.
+- `C = 0.01`: C is the inverse regularization parameter for `LogisticRegression`. In other words, a moderate penalty was chosen. <br>
+All that aside, how did the model improve? The final models confusion matrix was: <br>
+<img src="assets/final_confusion_matrix.png" alt="No confusion for you!">
