@@ -6,7 +6,7 @@ In 2v2 games, players pick civilizations according to the map and in order to co
 ### Data
 First, a big thank you to jerbot from [aoestats.io](https://aoestats.io/) for creating a community API endpoint for access to the data. This analysis is only possible because of this! <br>
 <br>
-The initial dataset has data from the last 5 weeks of games, from 5/11/25 to 6/14/25. In total, there were _ games, with a total of _ player instances. The data is separated into one dataframe of information on games, and one with information on specific players. <br>
+The initial dataset has data from the last 5 weeks of games, from 5/11/25 to 6/14/25. In total, there were 1159967 games, with a total of 4040518 player instances. The data is separated into one dataframe of information on games, and one with information on specific players. <br>
 The dataset has many columns (you can read a full description [here](https://aoestats.io/)). From the match dataframe, I will use the following columns: <br> <br>
 - `map` - string: contains the map the game was played on.
 - `game_id` - string: internal id of the game - used to merge with the player dataframe.
