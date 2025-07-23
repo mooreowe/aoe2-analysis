@@ -1,3 +1,4 @@
+For the best view, please access [the website](https://mooreowe.github.io/aoe2-analysis/).
 # Introduction
 
 Age of Empires II is a popular RTS (real-time strategy) game, currently developed by Microsoft under World's Edge studios and the Forgotten Empires team. The ranked mode of the game pits you (and optionally your team) against another team, based on elo. Everyone picks a civilization before the match begins, which has unique bonuses and access to different units, with the goal of building an empire to defeat your opponent. <br> <br>
